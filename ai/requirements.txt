@@ -13,10 +13,9 @@ openpyxl>=3.1.0
 pandas==2.3.1
 numpy==2.2.6
 
-# ── Embeddings ────────────────────────────────────────────────────────────────
-sentence-transformers>=3.0.0,<3.2.0
-# PyTorch CPU — install separately first:
-#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# ── Embeddings (ONNX/Chroma Built-in — Low RAM) ───────────────────────────────
+onnxruntime>=1.14.1
+tokenizers>=0.13.3
 
 # ── Vector store ──────────────────────────────────────────────────────────────
 chromadb>=0.5.0,<0.6.0
