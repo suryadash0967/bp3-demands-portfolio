@@ -47,24 +47,13 @@ def _get_client() -> chromadb.PersistentClient:
 def build_or_load_collection(force_rebuild: bool = False) -> Collection:
     """
     Return the ChromaDB collection, building it if necessary.
-
-    Rebuilds when:
-    - force_rebuild=True is passed.
-    - The demands.xlsx fingerprint has changed since last build.
-    - The collection is empty.
-
-    Args:
-        force_rebuild: If True, always drop and rebuild the collection.
-
-    Returns:
-        The loaded/built ChromaDB collection.
     """
     client = _get_client()
     excel_path = settings.excel_absolute_path
-    current_fp = get_file_fingerprint(excel_path)
-    stored_fp = _get_stored_fingerprint()
-
-    needs_rebuild = force_rebuild or (current_fp != stored_fp)
+    
+    # HARDCODED for Render Free Tier: Never auto-rebuild on startup.
+    # The database must be pre-built locally and pushed to git.
+    needs_rebuild = force_rebuild
 
     if not needs_rebuild:
         try:
@@ -83,10 +72,8 @@ def build_or_load_collection(force_rebuild: bool = False) -> Collection:
     if needs_rebuild:
         logger.info("Building ChromaDB collection from knowledge base…")
 
-        # Drop existing collection if present
         try:
             client.delete_collection(settings.collection_name)
-            logger.debug("Dropped existing collection.")
         except Exception:
             pass
 
@@ -95,14 +82,12 @@ def build_or_load_collection(force_rebuild: bool = False) -> Collection:
             metadata={"hnsw:space": "cosine"},
         )
 
-        # Load, chunk, embed, upsert
         documents = load_documents(excel_path)
         texts, metadatas, ids = chunk_documents(documents)
 
         logger.info(f"Embedding {len(texts)} documents…")
         embeddings = embedding_service.encode(texts)
 
-        # ChromaDB upsert in batches of 500
         batch_size = 500
         for start in range(0, len(texts), batch_size):
             end = start + batch_size
@@ -114,7 +99,7 @@ def build_or_load_collection(force_rebuild: bool = False) -> Collection:
             )
             logger.debug(f"Upserted batch {start}:{end}")
 
-        _save_fingerprint(current_fp)
+        _save_fingerprint(get_file_fingerprint(excel_path))
         logger.info(
             f"Collection '{settings.collection_name}' built with {collection.count()} documents."
         )
