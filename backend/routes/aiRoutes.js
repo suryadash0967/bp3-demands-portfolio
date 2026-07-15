@@ -45,7 +45,16 @@ async function proxyToAI(endpoint, body, res) {
 
     clearTimeout(timeout)
 
-    const data = await response.json()
+    const text = await response.text()
+    let data
+    try {
+      data = JSON.parse(text)
+    } catch (e) {
+      console.error('[AI proxy error] Non-JSON response:', text.substring(0, 200))
+      return res.status(response.status || 500).json({
+        message: 'Invalid JSON received from AI service. The request may have timed out at the gateway.',
+      })
+    }
 
     if (!response.ok) {
       return res.status(response.status).json({

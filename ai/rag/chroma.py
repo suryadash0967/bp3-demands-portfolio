@@ -41,7 +41,10 @@ def _save_fingerprint(fp: str) -> None:
 def _get_client() -> chromadb.PersistentClient:
     path = str(settings.chroma_absolute_path)
     Path(path).mkdir(parents=True, exist_ok=True)
-    return chromadb.PersistentClient(path=path)
+    return chromadb.PersistentClient(
+        path=path,
+        settings=chromadb.Settings(anonymized_telemetry=False)
+    )
 
 
 def build_or_load_collection(force_rebuild: bool = False) -> Collection:
