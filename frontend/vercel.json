@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://REPLACE_WITH_RENDER_BACKEND_URL/api/:path*"
+      "destination": "https://bp3-demands-backend.onrender.com/api/:path*"
     }
   ]
 }
