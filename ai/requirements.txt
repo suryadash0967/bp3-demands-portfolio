@@ -23,8 +23,7 @@ chromadb>=0.5.0,<0.6.0
 
 # ── Forecasting (Python 3.13 compatible — no C++ required) ───────────────────
 statsmodels>=0.14.0
-# Prophet is NOT included — no Python 3.13 wheels available yet.
-# To use Prophet, install Python 3.12 and reinstall.
+prophet>=1.1.7
 
 # ── LLM (OpenAI-compatible) ────────────────────────────────────────────────────
 openai>=1.35.0
