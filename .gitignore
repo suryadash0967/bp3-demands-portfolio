@@ -18,7 +18,6 @@ env/
 .env.local
 
 # ── AI Runtime ────────────────────────────────────────────────────────────────
-ai/chroma_store/
 ai/logs/
 ai/*.log
 
