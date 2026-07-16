@@ -1,40 +1,3 @@
-const features = [
-  {
-    title: 'Enterprise Integration',
-    desc: 'Connecting SAP, enterprise applications, and cross-functional business systems into a unified digital ecosystem that enables seamless collaboration and data-driven decision making.',
-    color: '#EEF4FF',
-    iconColor: '#3B82F6',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <circle cx="12" cy="12" r="3" /><path d="M12 2v3m0 14v3M2 12h3m14 0h3" />
-        <path d="M5.22 5.22l2.12 2.12m9.32 9.32 2.12 2.12M5.22 18.78l2.12-2.12m9.32-9.32 2.12-2.12" />
-      </svg>
-    ),
-  },
-  {
-    title: 'AI-Driven Intelligence',
-    desc: 'Leveraging predictive and prescriptive analytics to forecast demand, optimize inventory, identify operational gaps, and support strategic business planning.',
-    color: '#F0FDF4',
-    iconColor: '#10B981',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path d="M9 12l2 2 4-4" /><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Business Transformation',
-    desc: 'Empowering enterprises with KPI monitoring, market intelligence, workflow automation, and digital solutions that deliver measurable operational excellence.',
-    color: '#FFF7ED',
-    iconColor: '#F59E0B',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path d="M3 17l4-8 4 4 4-6 4 4" /><path d="M21 21H3" />
-      </svg>
-    ),
-  },
-]
-
 const highlights = [
   'Unified SAP and enterprise application integration',
   'AI-powered demand forecasting and predictive analytics',
@@ -54,19 +17,11 @@ export default function About() {
             </h2>
 
             <p>
-              DE-BP3 is dedicated to building intelligent enterprise solutions that connect
+              DE-BP3 is dedicated to orchestrating intelligent enterprise solutions that connect
               business processes, integrate SAP and enterprise platforms, and simplify
               complex operations through digital innovation. Our focus is on creating
               scalable systems that enhance collaboration, improve visibility, and enable
               smarter decision-making across the organization.
-            </p>
-
-            <p>
-              By combining enterprise integration with AI-driven analytics, predictive
-              planning, and business intelligence, we empower teams to optimize demand,
-              monitor performance, streamline workflows, and accelerate digital
-              transformation across supply chain, finance, quality, manufacturing, and
-              engineering functions.
             </p>
           </div>
 
@@ -93,20 +48,6 @@ export default function About() {
               ))}
             </svg>
           </div>
-        </div>
-
-        <div className="feature-cards" role="list">
-          {features.map(f => (
-            <article className="feature-card" key={f.title} role="listitem">
-              <div className="feature-icon" style={{ background: f.color }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke={f.iconColor} strokeWidth="1.8" aria-hidden="true">
-                  {f.icon.props.children}
-                </svg>
-              </div>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
-            </article>
-          ))}
         </div>
       </div>
     </section>
