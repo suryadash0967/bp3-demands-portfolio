@@ -11,7 +11,6 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <About />
-        <Stats />
       </main>
       <Footer />
     </>
