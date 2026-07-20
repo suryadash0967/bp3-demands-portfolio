@@ -9,26 +9,31 @@ const SUGGESTION_CATEGORIES = [
   {
     title: 'Portfolio Analytics',
     questions: [
-      'How many high priority demands are there?',
-      'Which application has the highest workload?',
-      'Which department raised the most requests?',
-      'Top applications by demand count.',
+      'How many demands are currently in the portfolio?',
+      'Show demand distribution by priority.',
+      'Which applications have the highest number of demands?',
+      'Which departments raised the most requests?',
+      'Which owners are handling the most demands?'
     ]
   },
   {
     title: 'Project Insights',
     questions: [
       'Summarize the current demand portfolio.',
-      'Which project types are most common?',
-      'Which work area has the highest demand?',
       'Show project status distribution.',
+      'Which demand types are most common?',
+      'Which work areas have the highest demand?',
+      'Which projects are yet to start?'
     ]
   },
   {
-    title: 'Request Search',
+    title: 'Business Value',
     questions: [
-      'Show high priority requests.',
-      'Show Feature Enhancement requests.',
+      'Which applications provide the highest effort reduction?',
+      'Which demands have the highest ROI effort reduction?',
+      'Show enterprise-impact demands.',
+      'List all high priority Feature Enhancement requests.',
+      'Which applications have the most high priority demands?'
     ]
   }
 ]
