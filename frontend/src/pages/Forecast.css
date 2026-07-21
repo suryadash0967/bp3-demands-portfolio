@@ -171,9 +171,17 @@
   line-height: 1;
 }
 
-.forecast-kpi-value.trend-increasing { color: #10B981; }
-.forecast-kpi-value.trend-decreasing { color: #EF4444; }
-.forecast-kpi-value.trend-stable     { color: #F59E0B; }
+.forecast-kpi-value.trend-increasing {
+  color: #2563EB;   /* Blue */
+}
+
+.forecast-kpi-value.trend-decreasing {
+  color: #F59E0B;   /* Orange */
+}
+
+.forecast-kpi-value.trend-stable {
+  color: #6B7280;   /* Gray */
+}
 
 .forecast-kpi-sub {
   font-size: 0.75rem;

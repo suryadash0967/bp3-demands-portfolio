@@ -10,13 +10,13 @@ import RoleBadge from '../components/RoleBadge/RoleBadge'
 import './Forecast.css'
 
 const METRICS = [
-  { value: 'overall',       label: 'Overall Demand' },
-  { value: 'application',   label: 'By Application' },
-  { value: 'department',    label: 'By Department' },
-  { value: 'priority',      label: 'By Priority' },
-  { value: 'project_type',  label: 'By Project Type' },
-  { value: 'work_area',     label: 'By Work Area' },
-  { value: 'vertical',      label: 'By Vertical' },
+  { value: 'overall', label: 'Overall Demand' },
+  { value: 'application', label: 'By Application' },
+  { value: 'department', label: 'By Department' },
+  { value: 'priority', label: 'By Priority' },
+  { value: 'project_type', label: 'By Project Type' },
+  { value: 'work_area', label: 'By Work Area' },
+  { value: 'vertical', label: 'By Vertical' },
   { value: 'pm_department', label: 'By PM Department' },
 ]
 
@@ -128,23 +128,23 @@ export default function Forecast() {
   // Merge historical + forecast for chart
   const chartData = result
     ? [
-        ...result.historical.map(p => ({
-          name: p.label,
-          Actual: p.actual,
-          Forecast: p.yhat ?? null,
-          Lower: p.yhat_lower ?? null,
-          Upper: p.yhat_upper ?? null,
-          type: 'historical',
-        })),
-        ...result.forecast.map(p => ({
-          name: p.label,
-          Actual: null,
-          Forecast: p.yhat,
-          Lower: p.yhat_lower,
-          Upper: p.yhat_upper,
-          type: 'forecast',
-        })),
-      ]
+      ...result.historical.map(p => ({
+        name: p.label,
+        Actual: p.actual,
+        Forecast: p.yhat ?? null,
+        Lower: p.yhat_lower ?? null,
+        Upper: p.yhat_upper ?? null,
+        type: 'historical',
+      })),
+      ...result.forecast.map(p => ({
+        name: p.label,
+        Actual: null,
+        Forecast: p.yhat,
+        Lower: p.yhat_lower,
+        Upper: p.yhat_upper,
+        type: 'forecast',
+      })),
+    ]
     : []
 
   // Date of last historical point (for reference line)
@@ -155,8 +155,8 @@ export default function Forecast() {
     ? result.trend === 'increasing'
       ? 'trend-increasing'
       : result.trend === 'decreasing'
-      ? 'trend-decreasing'
-      : 'trend-stable'
+        ? 'trend-decreasing'
+        : 'trend-stable'
     : ''
 
   const metricLabel = METRICS.find(m => m.value === metric)?.label ?? metric
@@ -275,12 +275,12 @@ export default function Forecast() {
                   {loading
                     ? <><div className="forecast-run-spinner" /> Forecasting…</>
                     : <>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width={15} height={15}>
-                          <path d="M3 3v18h18" />
-                          <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
-                        </svg>
-                        Run Forecast
-                      </>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width={15} height={15}>
+                        <path d="M3 3v18h18" />
+                        <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
+                      </svg>
+                      Run Forecast
+                    </>
                   }
                 </button>
               </div>
@@ -342,10 +342,14 @@ export default function Forecast() {
                       sub="Highest predicted demand"
                     />
                     <ForecastKPI
-                      label="Growth"
-                      value={result.growth_pct != null ? `${result.growth_pct >= 0 ? '+' : ''}${result.growth_pct}%` : '—'}
-                      sub={`Over next ${result.months_ahead} month(s)`}
-                      valueClass={result.growth_pct >= 0 ? 'trend-increasing' : 'trend-decreasing'}
+                      label="Projected Change"
+                      value={
+                        result.growth_pct != null
+                          ? `${result.growth_pct >= 0 ? '+' : ''}${result.growth_pct}%`
+                          : '—'
+                      }
+                      sub={`Compared to current demand over the next ${result.months_ahead} month(s)`}
+                      valueClass="trend-increasing"
                     />
                     <div className="forecast-kpi-card">
                       <div className="forecast-kpi-label">Confidence</div>
